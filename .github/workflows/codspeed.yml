@@ -34,6 +34,7 @@ jobs:
         with:
           run: cmake-build-benchmarks/json_benchmarks
           token: ${{ secrets.CODSPEED_TOKEN }}
+          upload-url: https://api.staging.preview.codspeed.io/upload
 
   benchmarks-walltime:
     name: Run walltime benchmarks
@@ -59,3 +60,4 @@ jobs:
         with:
           run: cmake-build-benchmarks/json_benchmarks
           token: ${{ secrets.CODSPEED_TOKEN }}
+          upload-url: https://api.staging.preview.codspeed.io/upload
