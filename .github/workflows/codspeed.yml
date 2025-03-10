@@ -34,3 +34,28 @@ jobs:
         with:
           run: cmake-build-benchmarks/json_benchmarks
           token: ${{ secrets.CODSPEED_TOKEN }}
+
+  benchmarks-walltime:
+    name: Run walltime benchmarks
+    runs-on: codspeed-macro
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          token: ${{ secrets.PAT }}
+
+      - run: git config --global url."https://not-matthias:${{ secrets.PAT }}@github.com".insteadOf "https://github.com"
+
+      - name: Build the benchmark target(s)
+        run: |
+          ls
+          mkdir cmake-build-benchmarks
+          cd cmake-build-benchmarks
+          cmake ../tests/benchmarks -DCMAKE_BUILD_TYPE=Release -DCODSPEED_MODE=instrumentation
+          make -j12
+
+
+      - name: Run the benchmarks
+        uses: CodSpeedHQ/action@v3
+        with:
+          run: cmake-build-benchmarks/json_benchmarks
+          token: ${{ secrets.CODSPEED_TOKEN }}
