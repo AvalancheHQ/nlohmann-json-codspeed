@@ -50,8 +50,8 @@ all:
 run_benchmarks:
 	rm -fr cmake-build-benchmarks
 	mkdir cmake-build-benchmarks
-	cd cmake-build-benchmarks ; cmake ../tests/benchmarks -GNinja -DCMAKE_BUILD_TYPE=Release
-	cd cmake-build-benchmarks ; ninja
+	cd cmake-build-benchmarks ; cmake ../tests/benchmarks -DCMAKE_BUILD_TYPE=Release
+	cd cmake-build-benchmarks ; make
 	cd cmake-build-benchmarks ; ./json_benchmarks
 
 

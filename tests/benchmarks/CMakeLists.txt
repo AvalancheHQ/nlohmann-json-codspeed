@@ -14,7 +14,7 @@ endif()
 #     GIT_TAG origin/main
 #     GIT_SHALLOW TRUE
 # )
-# 
+#
 # FetchContent_GetProperties(benchmark)
 # if(NOT benchmark_POPULATED)
 #     FetchContent_Populate(benchmark)
@@ -34,9 +34,10 @@ add_dependencies(json_benchmarks download_test_data)
 target_include_directories(json_benchmarks PRIVATE ${CMAKE_SOURCE_DIR}/../../single_include ${CMAKE_BINARY_DIR}/include)
 
 
-# CODSPEED: 
+# CODSPEED:
 project(my_codspeed_project VERSION 0.0.0 LANGUAGES CXX)
 set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON)
+include(FetchContent)
 FetchContent_Declare(
     google_benchmark
     GIT_REPOSITORY https://github.com/CodSpeedHQ/codspeed-cpp
@@ -51,4 +52,3 @@ FetchContent_MakeAvailable(google_benchmark)
 
 # Link your executable against the `benchmark::benchmark` library
 #target_link_libraries(my_benchmark_example benchmark::benchmark)
-
