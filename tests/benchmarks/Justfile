@@ -1,0 +1,21 @@
+
+clean:
+    rm -rf build
+
+setup mode="":
+    mkdir build
+    cd build ; cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja -DCODSPEED_MODE={{mode}}
+
+build:
+    cd build ; ninja -j16
+
+build-instr:
+    setup "instrumentation"
+    build
+
+build-walltime:
+    setup "walltime"
+    build
+
+run:
+    cd build ; ninja run

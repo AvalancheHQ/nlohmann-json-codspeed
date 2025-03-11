@@ -3,7 +3,7 @@ project(JSON_Benchmarks LANGUAGES CXX)
 
 # set compiler flags
 if((CMAKE_CXX_COMPILER_ID MATCHES GNU) OR (CMAKE_CXX_COMPILER_ID MATCHES Clang))
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto -DNDEBUG -O3")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 endif()
 
 # configure Google Benchmarks
@@ -29,7 +29,7 @@ include(download_test_data)
 # benchmark binary
 add_executable(json_benchmarks src/benchmarks.cpp)
 target_compile_features(json_benchmarks PRIVATE cxx_std_11)
-target_link_libraries(json_benchmarks benchmark ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(json_benchmarks benchmark::benchmark ${CMAKE_THREAD_LIBS_INIT})
 add_dependencies(json_benchmarks download_test_data)
 target_include_directories(json_benchmarks PRIVATE ${CMAKE_SOURCE_DIR}/../../single_include ${CMAKE_BINARY_DIR}/include)
 
@@ -51,4 +51,4 @@ FetchContent_MakeAvailable(google_benchmark)
 #add_executable(my_benchmark_executable main.cpp)
 
 # Link your executable against the `benchmark::benchmark` library
-#target_link_libraries(my_benchmark_example benchmark::benchmark)
+# target_link_libraries(json_benchmarks benchmark::benchmark)
